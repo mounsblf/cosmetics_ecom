@@ -15,8 +15,11 @@ export async function GET(request: Request) {
     return NextResponse.json({ products });
   } catch (error) {
     console.error("[GET /api/products]", error);
+    // Détail temporaire pour diagnostic (nom + message, sans secret)
+    const detail =
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error);
     return NextResponse.json(
-      { error: "Impossible de récupérer les produits." },
+      { error: "Impossible de récupérer les produits.", detail },
       { status: 500 },
     );
   }
