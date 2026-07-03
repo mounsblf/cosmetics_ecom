@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useCart, type CartItem } from "@/context/CartContext";
 import { Container } from "@/components/ui/Container";
-import { ButtonLink, Button } from "@/components/ui/Button";
+import { ButtonLink } from "@/components/ui/Button";
+import { CheckoutButton } from "@/components/cart/CheckoutButton";
 import { ProductImage } from "@/components/product/ProductImage";
 import { formatPrice } from "@/lib/format";
 
@@ -138,12 +139,10 @@ export function CartView() {
             </span>
           </div>
 
-          {/* Le paiement Stripe sera branché en P4 */}
-          <Button variant="gold" size="lg" disabled className="mt-6 w-full">
-            Passer au paiement
-          </Button>
+          {/* Paiement sécurisé via Stripe Checkout */}
+          <CheckoutButton />
           <p className="mt-3 text-center text-xs text-charcoal/45">
-            Le paiement sécurisé sera activé à la prochaine étape.
+            Paiement sécurisé via Stripe · Livraison offerte
           </p>
 
           <Link

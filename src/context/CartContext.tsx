@@ -16,7 +16,7 @@ export interface CartItem {
   id: string; // identifiant produit
   slug: string;
   name: string;
-  price: number; // MAD
+  price: number; // EUR
   type: ProductType;
   stock: number;
   quantity: number;

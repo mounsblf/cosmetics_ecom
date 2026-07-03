@@ -24,7 +24,7 @@ const ProductSchema = new Schema(
     category: { type: String, default: "" },
     images: { type: [String], default: [] },
 
-    // Prix en MAD (unités entières), stock et référence propres à l'article
+    // Prix en EUR, stock et référence propres à l'article
     price: { type: Number, required: true, min: 0 },
     sku: { type: String, default: "" },
     stock: { type: Number, default: 0, min: 0 },

@@ -1,4 +1,7 @@
-/** Formate un prix en dirhams marocains (MAD). Ex : 290 → "290 MAD". */
-export function formatPrice(amountMAD: number): string {
-  return `${new Intl.NumberFormat("fr-FR").format(amountMAD)} MAD`;
+/** Formate un prix en euros. Ex : 24 → "24,00 €". */
+export function formatPrice(amountEUR: number): string {
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+  }).format(amountEUR);
 }

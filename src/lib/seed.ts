@@ -14,7 +14,7 @@ export const UNITS = [
     slug: "huile-argan-pure",
     name: "Huile d'Argan Pure",
     category: "Visage",
-    price: 180,
+    price: 24,
     stock: 40,
     description:
       "L'or liquide du Maroc, pressé à froid. Nourrit, répare et sublime la peau comme les cheveux.",
@@ -24,7 +24,7 @@ export const UNITS = [
     slug: "ghassoul-purifiant",
     name: "Ghassoul Argile Purifiante",
     category: "Visage",
-    price: 90,
+    price: 12,
     stock: 60,
     description:
       "Argile volcanique de l'Atlas qui purifie en douceur et resserre les pores.",
@@ -34,7 +34,7 @@ export const UNITS = [
     slug: "savon-noir-beldi",
     name: "Savon Noir Beldi",
     category: "Corps",
-    price: 70,
+    price: 9,
     stock: 80,
     description:
       "Pâte d'olive traditionnelle du hammam, pour une peau lisse et régénérée.",
@@ -44,7 +44,7 @@ export const UNITS = [
     slug: "eau-de-rose-dades",
     name: "Eau de Rose du Dadès",
     category: "Visage",
-    price: 110,
+    price: 14,
     stock: 50,
     description:
       "Distillée à partir des roses de la vallée du Dadès. Tonifie et apaise.",
@@ -54,7 +54,7 @@ export const UNITS = [
     slug: "baume-levres-argan-miel",
     name: "Baume à Lèvres Argan & Miel",
     category: "Visage",
-    price: 60,
+    price: 8,
     stock: 100,
     description: "Un baume fondant qui nourrit et protège les lèvres sensibles.",
     ingredients: ["Argan", "Cire d'abeille", "Miel"],
@@ -63,7 +63,7 @@ export const UNITS = [
     slug: "gommage-noyaux-argan",
     name: "Gommage Corps aux Noyaux d'Argan",
     category: "Corps",
-    price: 130,
+    price: 18,
     stock: 45,
     description:
       "Exfoliant naturel qui affine le grain de peau et révèle son éclat.",
@@ -73,7 +73,7 @@ export const UNITS = [
     slug: "masque-cheveux-argan-figue",
     name: "Masque Cheveux Argan & Figue de Barbarie",
     category: "Cheveux",
-    price: 150,
+    price: 19,
     stock: 35,
     description:
       "Un soin profond qui répare les longueurs et discipline les cheveux secs.",
@@ -83,7 +83,7 @@ export const UNITS = [
     slug: "huile-figue-de-barbarie",
     name: "Huile de Figue de Barbarie",
     category: "Visage",
-    price: 320,
+    price: 39,
     stock: 20,
     description:
       "Le trésor anti-âge du Sud marocain, riche en vitamine E, pour une peau raffermie.",
@@ -97,7 +97,7 @@ export const BOXES = [
     slug: "coffret-decouverte",
     name: "Coffret Découverte",
     boxSize: "Petit" as const,
-    price: 290,
+    price: 32,
     stock: 25,
     description:
       "Le rituel essentiel pour s'initier aux soins marocains. Idéal en cadeau.",
@@ -111,7 +111,7 @@ export const BOXES = [
     slug: "coffret-signature",
     name: "Coffret Signature",
     boxSize: "Moyen" as const,
-    price: 490,
+    price: 55,
     stock: 20,
     description: "Une routine complète visage et corps, entre pureté et éclat.",
     contents: [
@@ -125,7 +125,7 @@ export const BOXES = [
     slug: "coffret-prestige",
     name: "Coffret Prestige",
     boxSize: "Grand" as const,
-    price: 790,
+    price: 89,
     stock: 12,
     description:
       "L'expérience intégrale : visage, corps et cheveux, dans un écrin d'exception.",

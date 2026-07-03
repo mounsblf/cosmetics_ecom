@@ -11,7 +11,7 @@ export interface BaseProduct {
   description: string;
   category: string;
   images: string[];
-  price: number; // en MAD
+  price: number; // en EUR
   sku: string;
   stock: number;
   isActive: boolean;
