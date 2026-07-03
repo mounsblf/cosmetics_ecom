@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   Système de design — Cosmétiques marocains premium
+   Style : minimalisme scandinave + touches marocaines
+   ============================================================ */
+
+@theme {
+  /* --- Couleurs de la charte --- */
+  --color-cream: #fbf9f6; /* fond principal, chaleureux */
+  --color-charcoal: #1a1a1a; /* textes & lignes fines */
+  --color-terracotta: #d6a284; /* accent chaleureux (argile) */
+  --color-olive: #3b4436; /* accent nature / action principale */
+  --color-gold: #d4af37; /* accent premium, avec parcimonie */
+
+  /* Alias sémantiques */
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-charcoal);
+
+  /* --- Typographie --- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Titres en serif d'affichage par défaut */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Petite étiquette « eyebrow » réutilisable */
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
