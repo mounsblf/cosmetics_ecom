@@ -36,9 +36,18 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI, {
       bufferCommands: false,
+      serverSelectionTimeoutMS: 8000,
     });
   }
 
-  cached.conn = await cached.promise;
+  try {
+    cached.conn = await cached.promise;
+  } catch (error) {
+    // Réinitialise le cache pour autoriser une nouvelle tentative
+    // (sinon l'instance reste bloquée sur une promesse rejetée).
+    cached.promise = null;
+    throw error;
+  }
+
   return cached.conn;
 }
