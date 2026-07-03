@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { useCart } from "@/context/CartContext";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -46,6 +47,7 @@ function CartIcon({ className }: { className?: string }) {
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { totalItems, loaded } = useCart();
 
   return (
     <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-cream/85 backdrop-blur-md">
@@ -69,10 +71,15 @@ export function Header() {
           <div className="flex items-center gap-4">
             <Link
               href="/panier"
-              aria-label="Panier"
+              aria-label={`Panier (${totalItems} article${totalItems > 1 ? "s" : ""})`}
               className="relative text-charcoal transition-colors hover:text-olive"
             >
               <CartIcon className="h-6 w-6" />
+              {loaded && totalItems > 0 && (
+                <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-olive px-1 text-[0.65rem] font-medium text-cream">
+                  {totalItems}
+                </span>
+              )}
             </Link>
 
             {/* Bouton menu — mobile */}

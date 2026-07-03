@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CartProvider } from "@/context/CartContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -36,9 +37,11 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-cream text-charcoal antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <CartProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

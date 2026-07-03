@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ProductImage } from "./ProductImage";
+import { AddToCartButton } from "./AddToCartButton";
 import { ArchMotif } from "@/components/decor/ArchMotif";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { formatPrice } from "@/lib/format";
 import type { Product } from "@/types/product";
@@ -107,11 +107,18 @@ export function ProductDetail({ product }: { product: Product }) {
             </div>
           )}
 
-          {/* Action d'achat (branchée au panier en P3) */}
-          <div className="mt-10 flex items-center gap-4">
-            <Button variant="gold" size="lg" disabled={!inStock}>
-              {inStock ? "Ajouter au panier" : "Épuisé"}
-            </Button>
+          {/* Action d'achat */}
+          <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <AddToCartButton
+              item={{
+                id: product.id,
+                slug: product.slug,
+                name: product.name,
+                price: product.price,
+                type: product.type,
+                stock: product.stock,
+              }}
+            />
             {inStock && (
               <span className="text-sm text-charcoal/50">
                 {product.stock} en stock
