@@ -4,6 +4,7 @@ import { getStripe } from "@/lib/stripe";
 import { connectToDatabase } from "@/lib/db";
 import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
+import { sendOrderEmails } from "@/lib/email";
 
 /**
  * Webhook Stripe — SEULE source de vérité pour confirmer un paiement.
@@ -53,6 +54,18 @@ export async function POST(request: Request) {
           );
         }
         console.log(`[webhook] commande ${orderId} payée`);
+
+        // Emails de confirmation (ne bloque pas / ne fait pas échouer le webhook)
+        await sendOrderEmails({
+          id: String(order._id),
+          customerEmail: order.customerEmail,
+          amountTotal: order.amountTotal,
+          items: order.items.map((i) => ({
+            name: i.name,
+            quantity: i.quantity,
+            unitPrice: i.unitPrice,
+          })),
+        });
       }
     } catch (error) {
       console.error("[webhook] erreur traitement commande", error);

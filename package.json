@@ -11,13 +11,15 @@
     "smoke": "node --import tsx scripts/smoke.ts",
     "dev:db": "node --import tsx scripts/dev-db.ts",
     "test:webhook": "node --env-file=.env.local --import tsx scripts/test-webhook.ts",
-    "orders": "node --env-file=.env.local --import tsx scripts/orders.ts"
+    "orders": "node --env-file=.env.local --import tsx scripts/orders.ts",
+    "test:email": "node --env-file=.env.local --import tsx scripts/test-email.ts"
   },
   "dependencies": {
     "mongoose": "^9.7.3",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "resend": "^6.17.1",
     "stripe": "^22.3.0"
   },
   "devDependencies": {
