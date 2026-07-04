@@ -10,7 +10,8 @@
     "seed": "node --env-file=.env.local --import tsx scripts/seed.ts",
     "smoke": "node --import tsx scripts/smoke.ts",
     "dev:db": "node --import tsx scripts/dev-db.ts",
-    "test:webhook": "node --env-file=.env.local --import tsx scripts/test-webhook.ts"
+    "test:webhook": "node --env-file=.env.local --import tsx scripts/test-webhook.ts",
+    "orders": "node --env-file=.env.local --import tsx scripts/orders.ts"
   },
   "dependencies": {
     "mongoose": "^9.7.3",
