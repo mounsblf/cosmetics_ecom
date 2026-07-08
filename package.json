@@ -15,6 +15,7 @@
     "test:email": "node --env-file=.env.local --import tsx scripts/test-email.ts"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "mongoose": "^9.7.3",
     "next": "16.2.10",
     "react": "19.2.4",

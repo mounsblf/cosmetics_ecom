@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { useCart } from "@/context/CartContext";
+import { useUser } from "@/context/UserContext";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -45,9 +46,29 @@ function CartIcon({ className }: { className?: string }) {
   );
 }
 
+/** Icône compte client (trait fin). */
+function AccountIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.4}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5" />
+    </svg>
+  );
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const { totalItems, loaded } = useCart();
+  const { user, loaded: userLoaded } = useUser();
 
   return (
     <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-cream/85 backdrop-blur-md">
@@ -69,6 +90,16 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-4">
+            <Link
+              href={user ? "/compte" : "/compte/connexion"}
+              aria-label={user ? `Mon compte (${user.name})` : "Se connecter"}
+              className="relative text-charcoal transition-colors hover:text-olive"
+            >
+              <AccountIcon className="h-6 w-6" />
+              {userLoaded && user && (
+                <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full border-2 border-cream bg-olive" />
+              )}
+            </Link>
             <Link
               href="/panier"
               aria-label={`Panier (${totalItems} article${totalItems > 1 ? "s" : ""})`}

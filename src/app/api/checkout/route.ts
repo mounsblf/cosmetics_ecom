@@ -4,6 +4,7 @@ import { getStripe } from "@/lib/stripe";
 import { connectToDatabase } from "@/lib/db";
 import { Product } from "@/models/Product";
 import { Order } from "@/models/Order";
+import { getCurrentUser } from "@/lib/userAuth";
 
 // Pays de livraison autorisés (Union européenne)
 const EU_COUNTRIES: Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[] =
@@ -82,8 +83,12 @@ export async function POST(request: Request) {
       });
     }
 
+    // Client connecté ? (facultatif — l'achat invité reste possible)
+    const user = await getCurrentUser();
+
     // Crée la commande en attente (avant paiement)
     const order = await Order.create({
+      ...(user ? { user: user.id, customerEmail: user.email } : {}),
       items: orderItems,
       amountTotal,
       currency: "eur",
@@ -96,6 +101,8 @@ export async function POST(request: Request) {
     const session = await getStripe().checkout.sessions.create({
       mode: "payment",
       line_items: lineItems,
+      // E-mail prérempli sur la page Stripe pour un client connecté
+      ...(user ? { customer_email: user.email } : {}),
       shipping_address_collection: { allowed_countries: EU_COUNTRIES },
       metadata: { orderId: String(order._id) },
       success_url: `${origin}/commande/succes?session_id={CHECKOUT_SESSION_ID}`,

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCart, type CartItem } from "@/context/CartContext";
+import { useUser } from "@/context/UserContext";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { CheckoutButton } from "@/components/cart/CheckoutButton";
@@ -17,6 +18,7 @@ function hrefFor(item: CartItem): string {
 export function CartView() {
   const { items, loaded, updateQuantity, removeItem, subtotal, totalItems } =
     useCart();
+  const { user, loaded: userLoaded } = useUser();
 
   // Évite le clignotement avant la lecture du localStorage
   if (!loaded) {
@@ -144,6 +146,26 @@ export function CartView() {
           <p className="mt-3 text-center text-xs text-charcoal/45">
             Paiement sécurisé via Stripe · Livraison offerte
           </p>
+
+          {/* Invité ou connecté : les deux fonctionnent */}
+          {userLoaded && !user && (
+            <p className="mt-4 rounded-xl bg-cream px-4 py-3 text-center text-xs text-charcoal/60">
+              Vous pouvez commander en invité, ou{" "}
+              <Link
+                href="/compte/connexion?next=/panier"
+                className="text-olive underline underline-offset-4"
+              >
+                vous connecter
+              </Link>{" "}
+              pour retrouver vos commandes dans votre espace client.
+            </p>
+          )}
+          {userLoaded && user && (
+            <p className="mt-4 text-center text-xs text-charcoal/50">
+              Connecté en tant que {user.email} — cette commande sera liée à
+              votre compte.
+            </p>
+          )}
 
           <Link
             href="/produits"

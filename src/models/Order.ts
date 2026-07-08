@@ -15,6 +15,8 @@ const OrderItemSchema = new Schema(
 
 const OrderSchema = new Schema(
   {
+    // Client connecté (absent pour un achat invité)
+    user: { type: Schema.Types.ObjectId, ref: "User" },
     items: { type: [OrderItemSchema], required: true },
     amountTotal: { type: Number, required: true }, // EUR
     currency: { type: String, default: "eur" },
