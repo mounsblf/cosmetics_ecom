@@ -18,6 +18,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://cosmetics-ecom.vercel.app"),
   title: {
     default: "Nūr — Cosmétiques naturels du Maroc",
     template: "%s · Nūr",

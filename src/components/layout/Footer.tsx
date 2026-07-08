@@ -21,9 +21,10 @@ const COLUMNS = [
   {
     title: "Informations",
     links: [
-      { label: "Livraison", href: "/livraison" },
+      { label: "Livraison & retours", href: "/livraison" },
       { label: "CGV", href: "/cgv" },
       { label: "Mentions légales", href: "/mentions-legales" },
+      { label: "Confidentialité", href: "/confidentialite" },
     ],
   },
 ];
