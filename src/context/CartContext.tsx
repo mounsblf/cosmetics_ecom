@@ -20,6 +20,8 @@ export interface CartItem {
   type: ProductType;
   stock: number;
   quantity: number;
+  /** Catégorie ("Visage", "Corps", "Cheveux"…) — sert à la progression « rituel ». */
+  category?: string;
 }
 
 /** Donnée minimale nécessaire pour ajouter un article au panier. */

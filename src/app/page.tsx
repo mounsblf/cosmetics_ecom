@@ -1,6 +1,9 @@
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { ArchMotif } from "@/components/decor/ArchMotif";
+import { Hero3D } from "@/components/decor/Hero3D";
+import { ZelligeBand, ZelligeStar } from "@/components/decor/ZelligeStar";
 
 const COFFRETS = [
   {
@@ -42,44 +45,66 @@ const VALUES = [
   {
     title: "Fait au Maroc",
     text: "Une fabrication locale, artisanale et responsable.",
-    icon: (
-      <path d="M4 20h16 M6 20V9l6-4 6 4v11 M10 20v-5h4v5" />
-    ),
+    icon: <path d="M4 20h16 M6 20V9l6-4 6 4v11 M10 20v-5h4v5" />,
   },
 ];
 
 export default function Home() {
   return (
     <>
-      {/* ---------------- Hero ---------------- */}
+      {/* ---------------- Hero 3D ---------------- */}
       <section className="relative overflow-hidden">
-        <ArchMotif className="pointer-events-none absolute -right-10 top-4 h-[110%] w-auto text-terracotta/20 md:right-10" />
-        <Container className="relative py-24 md:py-32">
-          <div className="max-w-2xl">
-            <p className="eyebrow text-terracotta">Cosmétiques naturels · Maroc</p>
-            <h1 className="mt-6 text-5xl leading-[1.05] text-charcoal md:text-7xl">
-              La beauté,
-              <br />à l&apos;état naturel.
-            </h1>
-            <p className="mt-7 max-w-lg text-lg leading-relaxed text-charcoal/70">
-              Des soins sensoriels puisés dans les richesses du Maroc — argan,
-              ghassoul et plantes — pensés avec la sobriété d&apos;un rituel
-              essentiel.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <ButtonLink href="/produits" size="lg">
-                Découvrir la boutique
-              </ButtonLink>
-              <ButtonLink href="/coffrets" size="lg" variant="secondary">
-                Nos coffrets
-              </ButtonLink>
+        <Container className="relative py-20 md:py-24">
+          <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <p className="eyebrow animate-rise text-terracotta">
+                Cosmétiques naturels · Maroc
+              </p>
+              <h1 className="animate-rise mt-6 text-5xl leading-[1.05] text-charcoal [animation-delay:0.1s] md:text-7xl">
+                La beauté,
+                <br />à l&apos;état{" "}
+                <span className="text-gradient-maroc">naturel</span>.
+              </h1>
+              <p className="animate-rise mt-7 max-w-lg text-lg leading-relaxed text-charcoal/70 [animation-delay:0.2s]">
+                Des soins sensoriels puisés dans les richesses du Maroc —
+                argan, ghassoul et plantes — pensés avec la sobriété d&apos;un
+                rituel essentiel.
+              </p>
+
+              {/* Badges gamifiés */}
+              <div className="animate-rise mt-7 flex flex-wrap gap-2 [animation-delay:0.3s]">
+                {["🌿 100 % naturel", "🏺 Fait main au Maroc", "✨ Livraison offerte"].map(
+                  (b) => (
+                    <span
+                      key={b}
+                      className="rounded-full border border-charcoal/15 bg-white/60 px-4 py-1.5 text-sm text-charcoal/75 backdrop-blur transition-transform hover:-translate-y-0.5"
+                    >
+                      {b}
+                    </span>
+                  ),
+                )}
+              </div>
+
+              <div className="animate-rise mt-9 flex flex-wrap gap-4 [animation-delay:0.4s]">
+                <ButtonLink href="/produits" size="lg">
+                  Découvrir la boutique
+                </ButtonLink>
+                <ButtonLink href="/coffrets" size="lg" variant="secondary">
+                  Nos coffrets
+                </ButtonLink>
+              </div>
             </div>
+
+            {/* Scène 3D interactive (bouge avec la souris) */}
+            <Hero3D />
           </div>
         </Container>
       </section>
 
-      {/* ---------------- Coffrets ---------------- */}
-      <section className="py-20 md:py-28">
+      <ZelligeBand className="py-2" />
+
+      {/* ---------------- Coffrets (cartes 3D) ---------------- */}
+      <section className="py-16 md:py-24">
         <Container>
           <div className="flex flex-col items-end justify-between gap-6 sm:flex-row sm:items-end">
             <div>
@@ -96,33 +121,33 @@ export default function Home() {
 
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {COFFRETS.map((c) => (
-              <article
-                key={c.size}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-charcoal/10 bg-white transition-colors hover:border-charcoal/25"
-              >
-                <div
-                  className={`relative flex aspect-[4/5] items-center justify-center ${c.tint}`}
-                >
-                  <ArchMotif className="h-2/3 w-auto opacity-40" />
-                  <span className="eyebrow absolute left-5 top-5 font-sans">
-                    {c.size}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-2xl text-charcoal">{c.tagline}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-charcoal/60">
-                    {c.description}
-                  </p>
-                  <div className="mt-5 flex items-center justify-between">
-                    <span className="text-sm font-medium text-charcoal">
-                      {c.price}
+              <TiltCard key={c.size}>
+                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-charcoal/10 bg-white transition-colors hover:border-charcoal/25">
+                  <div
+                    className={`shine relative flex aspect-[4/5] items-center justify-center ${c.tint}`}
+                  >
+                    <ArchMotif className="h-2/3 w-auto opacity-40 transition-transform duration-500 group-hover:scale-105" />
+                    <span className="eyebrow absolute left-5 top-5 font-sans">
+                      {c.size}
                     </span>
-                    <span className="text-sm text-olive transition-transform group-hover:translate-x-1">
-                      Découvrir →
-                    </span>
+                    <ZelligeStar className="absolute bottom-4 right-4 h-6 w-6 opacity-50" />
                   </div>
-                </div>
-              </article>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-2xl text-charcoal">{c.tagline}</h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-charcoal/60">
+                      {c.description}
+                    </p>
+                    <div className="mt-5 flex items-center justify-between">
+                      <span className="text-sm font-medium text-charcoal">
+                        {c.price}
+                      </span>
+                      <span className="text-sm text-olive transition-transform group-hover:translate-x-1">
+                        Découvrir →
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </TiltCard>
             ))}
           </div>
         </Container>
@@ -133,7 +158,10 @@ export default function Home() {
         <Container>
           <div className="grid gap-12 md:grid-cols-3">
             {VALUES.map((v) => (
-              <div key={v.title} className="flex flex-col items-start">
+              <div
+                key={v.title}
+                className="group flex flex-col items-start rounded-2xl p-4 transition-all hover:-translate-y-1 hover:bg-white"
+              >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -141,7 +169,7 @@ export default function Home() {
                   strokeWidth={1.3}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-8 w-8 text-olive"
+                  className="h-8 w-8 text-olive transition-transform duration-300 group-hover:scale-110"
                   aria-hidden="true"
                 >
                   {v.icon}
@@ -160,13 +188,14 @@ export default function Home() {
       <section className="py-24 md:py-32">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
-            <span className="mx-auto mb-8 block h-10 w-px bg-gold" />
+            <ZelligeBand className="mb-10" />
             <h2 className="text-4xl text-charcoal md:text-5xl">
-              Un rituel qui vous ressemble
+              Un rituel qui vous{" "}
+              <span className="text-gradient-maroc">ressemble</span>
             </h2>
             <p className="mx-auto mt-5 max-w-md text-charcoal/70">
-              Composez votre routine parmi nos soins à l&apos;unité ou laissez-vous
-              guider par un coffret.
+              Composez votre routine parmi nos soins à l&apos;unité ou
+              laissez-vous guider par un coffret.
             </p>
             <div className="mt-9">
               <ButtonLink href="/produits" size="lg">

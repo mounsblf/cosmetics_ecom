@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProductImage } from "./ProductImage";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { formatPrice } from "@/lib/format";
 import type { Product } from "@/types/product";
 
@@ -14,19 +15,21 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <Link href={href} className="group flex flex-col">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-charcoal/10">
-        <ProductImage
-          src={product.images[0]}
-          alt={product.name}
-          seed={product.slug}
-          className="transition-transform duration-500 group-hover:scale-[1.03]"
-        />
-        {product.stock === 0 && (
-          <span className="absolute right-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-xs text-charcoal/70">
-            Épuisé
-          </span>
-        )}
-      </div>
+      <TiltCard>
+        <div className="shine relative aspect-[4/5] overflow-hidden rounded-2xl border border-charcoal/10">
+          <ProductImage
+            src={product.images[0]}
+            alt={product.name}
+            seed={product.slug}
+            className="transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+          {product.stock === 0 && (
+            <span className="absolute right-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-xs text-charcoal/70">
+              Épuisé
+            </span>
+          )}
+        </div>
+      </TiltCard>
 
       <div className="mt-4 flex items-start justify-between gap-3">
         <div>

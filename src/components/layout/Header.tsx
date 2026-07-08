@@ -107,7 +107,10 @@ export function Header() {
             >
               <CartIcon className="h-6 w-6" />
               {loaded && totalItems > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-olive px-1 text-[0.65rem] font-medium text-cream">
+                <span
+                  key={totalItems} // relance l'animation « pop » à chaque changement
+                  className="animate-pop absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-olive px-1 text-[0.65rem] font-medium text-cream"
+                >
                   {totalItems}
                 </span>
               )}

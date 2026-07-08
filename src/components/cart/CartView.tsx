@@ -6,6 +6,7 @@ import { useUser } from "@/context/UserContext";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { CheckoutButton } from "@/components/cart/CheckoutButton";
+import { RitualProgress } from "@/components/cart/RitualProgress";
 import { ProductImage } from "@/components/product/ProductImage";
 import { formatPrice } from "@/lib/format";
 
@@ -173,6 +174,9 @@ export function CartView() {
           >
             Continuer mes achats
           </Link>
+
+          {/* Gamification : progression du rituel */}
+          <RitualProgress items={items} />
         </aside>
       </div>
     </Container>

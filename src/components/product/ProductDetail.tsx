@@ -117,6 +117,7 @@ export function ProductDetail({ product }: { product: Product }) {
                 price: product.price,
                 type: product.type,
                 stock: product.stock,
+                category: product.category,
               }}
             />
             {inStock && (

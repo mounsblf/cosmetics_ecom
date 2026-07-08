@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { ArchMotif } from "@/components/decor/ArchMotif";
 import { ClearCart } from "@/components/cart/ClearCart";
+import { Confetti } from "@/components/decor/Confetti";
 import { getStripe } from "@/lib/stripe";
 import { formatPrice } from "@/lib/format";
 
@@ -34,8 +35,9 @@ export default async function SuccessPage({
 
   return (
     <Container className="py-24 text-center">
-      {/* Vide le panier côté client */}
+      {/* Vide le panier côté client + célébration */}
       <ClearCart />
+      <Confetti />
 
       <ArchMotif className="mx-auto h-16 w-auto text-terracotta/60" />
       <p className="eyebrow mt-8 text-olive">Commande confirmée</p>
